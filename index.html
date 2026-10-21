@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quà từ Ngân hàng Tình Yêu 💰</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#2a0610;overflow:hidden;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#fff3d6;-webkit-tap-highlight-color:transparent}
+body{background:radial-gradient(ellipse at 50% 0,#8a1226,#2a0610 72%)}
+.st{position:fixed;inset:0;display:none;overflow:auto;padding:calc(16px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));text-align:center}
+.st.on{display:flex;animation:fi .7s}
+@keyframes fi{from{opacity:0;transform:translateY(14px)}}
+.in{margin:auto;width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center;gap:14px}
+h1{margin:0;font:clamp(24px,7vw,36px)/1.25 Pacifico,cursive;background:linear-gradient(#fff6c4,#f5c542 55%,#c58f12);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.sub{margin:0;font-size:clamp(14px,3.8vw,16px);line-height:1.55;opacity:.92}
+.btn{border:0;cursor:pointer;font:600 clamp(15px,4.2vw,18px) 'Be Vietnam Pro',sans-serif;padding:13px 26px;border-radius:30px;color:#4a2200;background:linear-gradient(#ffe98a,#f2b61f 60%,#d99a0b);box-shadow:0 6px 0 #9a6a05,0 10px 24px rgba(0,0,0,.4);transition:transform .1s}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #9a6a05}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff3d6;box-shadow:none;border:1px solid rgba(255,243,214,.4)}
+/* lì xì */
+#env{width:min(46vw,190px,30dvh);cursor:pointer;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 12px 24px rgba(0,0,0,.5));transition:transform .15s}
+#env.shake{animation:sh .35s}
+@keyframes sh{20%{transform:rotate(-9deg) scale(1.05)}50%{transform:rotate(8deg) scale(1.05)}80%{transform:rotate(-4deg)}}
+#say{min-height:3em;font-size:clamp(15px,4.2vw,18px);font-weight:600;color:#ffe08a}
+#barw{width:min(70vw,260px);height:12px;border-radius:8px;background:rgba(255,255,255,.15);overflow:hidden}
+#bar{height:100%;width:0;background:linear-gradient(90deg,#ffe98a,#f2b61f);transition:width .25s}
+/* thỏi vàng */
+#bar24{width:min(86vw,360px);filter:drop-shadow(0 12px 24px rgba(0,0,0,.55));animation:fl 3s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+#shine{animation:sw 2.6s linear infinite}
+@keyframes sw{from{transform:translateX(-120px) skewX(-25deg)}to{transform:translateX(360px) skewX(-25deg)}}
+/* giấy chứng nhận */
+.paper{position:relative;width:100%;padding:18px 16px 20px;background:linear-gradient(#fff8e6,#ffeec2);color:#5a3a05;border:3px double #c58f12;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.45);text-align:left}
+.paper h2{margin:0 0 4px;text-align:center;font:700 clamp(15px,4.4vw,18px) 'Be Vietnam Pro';letter-spacing:.06em}
+.paper .own{text-align:center;margin:0 0 10px;font-size:14px}
+.paper ul{margin:0;padding:0;list-style:none}
+.paper li{font-size:clamp(13px,3.7vw,15px);line-height:1.5;padding:5px 0;border-top:1px dashed rgba(90,58,5,.35);opacity:0;animation:fi .5s both;animation-delay:calc(var(--i)*.55s + .6s)}
+.stamp{position:absolute;right:10px;bottom:8px;rotate:-14deg;border:3px solid #d4162c;color:#d4162c;font-weight:800;padding:2px 8px;border-radius:6px;font-size:14px;opacity:0;animation:fi .4s both;animation-delay:var(--sd,4s)}
+.btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;min-height:56px}
+/* hóa đơn */
+.rc{font-family:'Courier New',monospace;background:#fffdf5;color:#333}
+.rc li{display:flex;justify-content:space-between;gap:10px;font-size:clamp(12px,3.5vw,14px);border-top:1px dashed #bbb}
+.rc li b{text-align:right}
+.rc .tot{font-weight:700;border-top:2px solid #333;margin-top:6px;padding-top:8px}
+#joke{min-height:4.2em;font-size:clamp(15px,4.2vw,18px);font-weight:600;color:#ffe08a;line-height:1.5}
+/* xu rơi, toast, nhạc */
+.coin{position:fixed;top:-40px;z-index:50;pointer-events:none;animation:cf linear forwards}
+@keyframes cf{to{transform:translate(var(--x),110dvh) rotate(var(--r))}}
+#toast{position:fixed;left:50%;bottom:calc(8dvh + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:60;background:rgba(0,0,0,.7);padding:10px 18px;border-radius:20px;font-size:15px;opacity:0;pointer-events:none;transition:opacity .4s;max-width:88vw;text-align:center}
+#toast.on{opacity:1}
+#mus{position:fixed;z-index:70;top:calc(env(safe-area-inset-top) + 10px);right:12px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.4);color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;padding:0}
+#mus[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){#bar24,#shine{animation:none}}
+</style>
+</head>
+<body>
+
+<audio id="bgm" loop preload="auto"></audio>
+<button id="mus" aria-label="Bật hoặc tắt nhạc" hidden>🎵</button>
+<div id="toast"></div>
+
+<!-- Màn 1: bao lì xì -->
+<section class="st on" id="s1"><div class="in">
+  <h1 id="t1"></h1>
+  <p class="sub" id="p1"></p>
+  <svg id="env" viewBox="0 0 200 260" role="button" aria-label="Bao lì xì">
+    <rect x="6" y="6" width="188" height="248" rx="16" fill="#d4162c" stroke="#f5c542" stroke-width="5"/>
+    <path d="M6 70Q100 150 194 70V40Q100 120 6 40Z" fill="#b00f22"/>
+    <circle cx="100" cy="150" r="42" fill="#f5c542" stroke="#fff3b0" stroke-width="4"/>
+    <text x="100" y="168" text-anchor="middle" font-size="52" fill="#b00f22" font-weight="700">福</text>
+  </svg>
+  <div id="barw"><div id="bar"></div></div>
+  <div id="say"></div>
+</div></section>
+
+<!-- Màn 2: thỏi vàng + giấy chứng nhận -->
+<section class="st" id="s2"><div class="in">
+  <h1 id="t2"></h1>
+  <svg id="bar24" viewBox="0 0 320 170" aria-label="Thỏi vàng">
+    <defs>
+      <linearGradient id="gf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe98a"/><stop offset=".5" stop-color="#f2b61f"/><stop offset="1" stop-color="#b9820a"/></linearGradient>
+      <linearGradient id="gt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff6c4"/><stop offset="1" stop-color="#f5c542"/></linearGradient>
+      <clipPath id="cl"><path d="M70 22H250L282 72H38Z"/><path d="M38 72H282L304 150H16Z"/></clipPath>
+    </defs>
+    <path d="M70 22H250L282 72H38Z" fill="url(#gt)" stroke="#9a6a05" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M38 72H282L304 150H16Z" fill="url(#gf)" stroke="#9a6a05" stroke-width="3" stroke-linejoin="round"/>
+    <text x="160" y="106" text-anchor="middle" font-size="26" font-weight="800" fill="#8a5a00" opacity=".85">AU 999.9</text>
+    <text x="160" y="132" text-anchor="middle" font-size="12" font-weight="700" fill="#8a5a00" opacity=".8" letter-spacing="3">LOVE GOLD BANK</text>
+    <g clip-path="url(#cl)"><rect id="shine" x="0" y="0" width="40" height="170" fill="#fff" opacity=".55"/></g>
+  </svg>
+  <div class="paper">
+    <h2>GIẤY CHỨNG NHẬN SỞ HỮU</h2>
+    <p class="own">Chủ sở hữu hợp pháp: <b id="own"></b></p>
+    <ul id="fine"></ul>
+    <div class="stamp">ĐÃ DUYỆT ✔</div>
+  </div>
+  <div class="btns" id="b2" style="opacity:0;transition:opacity .8s">
+    <button class="btn" id="yes">Nhận vàng 💛</button>
+    <button class="btn ghost" id="no">Từ chối</button>
+  </div>
+</div></section>
+
+<!-- Màn 3: hóa đơn + câu đùa -->
+<section class="st" id="s3"><div class="in">
+  <h1 id="t3"></h1>
+  <div class="paper rc">
+    <h2>HÓA ĐƠN TÌNH YÊU</h2>
+    <p class="own" id="date"></p>
+    <ul id="bill"></ul>
+    <div class="stamp" style="--sd:3.6s">ĐÃ THANH TOÁN</div>
+  </div>
+  <div id="joke"></div>
+  <button class="btn" id="more"></button>
+</div></section>
+
+<script>
+/* ======== SỬA NỘI DUNG Ở ĐÂY ======== */
+const CONFIG = {
+  name: "em iu",                       // hoặc đổi bằng link: ?to=Lan
+  from: "Anhiu",
+  music: "music.mp3",                   // bỏ file mp3 cạnh file này (nếu có)
+  synth: true,                          // true = không có mp3 thì tự phát giai điệu có sẵn
+  taps: 8,                              // số lần chạm để mở lì xì
+  title1: "Ting ting! 📩 Emiu có 1 khoản tiền đang chờ nhận",
+  sub1: "Chạm liên tục vào bao lì xì để mở nhé (nhẹ tay thôi, vàng đấy! 😆)",
+  tapLines: [
+    "Nhẹ tay thôi, vàng đó!",
+    "Đập mạnh nữa đi, sắp ra rồi…",
+    "Ui, khỏe ghê, đúng là ny anh!",
+    "Nghe tiếng leng keng chưa? 👂",
+    "Thỏi vàng bên trong đang run rồi 😨",
+    "Đừng bỏ cuộc, tiền không tự rơi vào túi đâu!",
+    "Gần tới rồi, anh hồi hộp hơn em đấy!",
+    "LẦN CUỐI NÈ!!!"
+  ],
+  title2: "🎉 Chúc mừng! Emiu đã trúng 1 thỏi vàng 24K (loại tình yêu)",
+  fine: [
+    "Thỏi vàng này làm từ 100% sự đáng iu của em.",
+    "Không đổi được tiền mặt, chỉ đổi được 1 cái ôm.",
+    "Cấm bán, cấm cầm đồ, cấm khoe với bạn rồi bảo tự mua.",
+    "Bảo hành trọn đời, miễn là emiu còn cười với anh.",
+    "Anh không chịu trách nhiệm nếu em vui quá mà quên ăn cơm."
+  ],
+  noLines: ["Từ chối","Chắc chưa? 🤨","Nút này hỏng rồi 😏","Em bấm trượt rồi!","Đừng mà 🥺","Thôi nhận đi mà!"],
+  title3: "💳 Thanh toán thành công!",
+  bill: [
+    ["1 x Thỏi vàng 24K (ảo)","0đ"],
+    ["Phí ship (anh tự mang tới)","1 cái ôm"],
+    ["Thuế VAT","1 nụ hôn"],
+    ["Bảo hiểm khi em dỗi","1 lần xin lỗi"],
+    ["Khuyến mãi","Mua 1 tặng 1 anh Tuấn"]
+  ],
+  total: "Emiu chỉ cần hết dỗi 😊",
+  moreBtn: "Bấm để nghe anh nói thật 🎤",
+  jokes: [
+    "Giá vàng lên xuống thất thường, còn anh thì chỉ đầu tư vào mỗi em.",
+    "Em là cổ phiếu duy nhất anh không bao giờ muốn bán.",
+    "Vàng thật đắt quá, nên anh gửi bản này trước nhé 😭",
+    "Vàng thì có hạn, tình yêu anh thì không giới hạn (trừ lúc hết tiền).",
+    "Em quý hơn vàng, nhưng ví anh thì chưa kịp biết điều đó 🥲"
+  ],
+  final: "Hẹn em thỏi vàng thật vào dịp… anh trúng số 😂 Yêu em nhiều! ❤"
+};
+/* ==================================== */
+
+const $=id=>document.getElementById(id),R=(a,b)=>a+Math.random()*(b-a);
+const to=new URLSearchParams(location.search).get('to');if(to)CONFIG.name=to;
+$('t1').textContent=CONFIG.title1;$('p1').textContent=CONFIG.sub1;$('t2').textContent=CONFIG.title2;
+$('own').textContent=CONFIG.name;$('t3').textContent=CONFIG.title3;$('more').textContent=CONFIG.moreBtn;
+$('date').textContent=new Date().toLocaleDateString('vi-VN');
+$('fine').innerHTML=CONFIG.fine.map((t,i)=>`<li style="--i:${i}">✱ ${t}</li>`).join('');
+$('bill').innerHTML=CONFIG.bill.map(([a,b],i)=>`<li style="opacity:1;animation:none"><span>${a}</span><b>${b}</b></li>`).join('')
+  +`<li class="tot" style="opacity:1;animation:none"><span>TỔNG</span><b>${CONFIG.total}</b></li>`;
+
+const show=id=>{document.querySelectorAll('.st').forEach(e=>e.classList.toggle('on',e.id===id))};
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+function coins(n){n=Math.min(n,70);for(let i=0;i<n;i++)setTimeout(()=>{
+  const c=document.createElement('i');c.className='coin';c.textContent=Math.random()<.2?'💰':'🪙';
+  c.style.cssText=`left:${R(0,96)}vw;font-size:${R(20,38)}px;--x:${R(-60,60)}px;--r:${R(-540,540)}deg;animation-duration:${R(1.6,3.2)}s`;
+  document.body.appendChild(c);setTimeout(()=>c.remove(),3400)},i*45)}
+
+/* nhạc tự tạo bằng code (dùng khi không có file mp3) */
+function makeSynth(bpm){
+  let ctx,m,timer,step=0,next=0,on=false;
+  const E=60/bpm/2,F=n=>261.63*Math.pow(2,n/12);
+  const ch=[[0,4,7],[-3,0,4],[-7,-3,0],[-5,-1,2]],bs=[-12,-15,-19,-17],arp=[0,1,2,1,0,1,2,1];
+  const mel=[[16,19,21,19,16,14,12,null],[12,16,19,16,21,null,19,16],[21,24,26,24,21,19,16,null],[19,21,19,16,14,16,14,12],
+             [19,19,16,19,21,19,16,null],[21,19,16,14,12,14,16,null],[21,21,24,21,19,16,19,null],[14,16,19,21,19,16,14,12]];
+  function note(t,fr,d,type,v){const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=fr;
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+    o.connect(g);g.connect(m);o.start(t);o.stop(t+d+.05)}
+  function sched(){while(next<ctx.currentTime+.5){
+    const bar=Math.floor(step/8)%8,e=step%8,c=ch[bar%4],mn=mel[bar][e];
+    if(mn!=null)note(next,F(mn),E*1.8,'triangle',.2);
+    note(next,F(c[arp[e]]),E*1.4,'sine',.08);
+    if(e%4==0)note(next,F(bs[bar%4]),E*3.6,'sine',.2);
+    step++;next+=E}}
+  return{
+    get on(){return on},
+    unlock(){if(!ctx){ctx=new(window.AudioContext||window.webkitAudioContext)();m=ctx.createGain();m.gain.value=0;m.connect(ctx.destination)}ctx.resume()},
+    start(){if(on)return;this.unlock();m.gain.setTargetAtTime(.6,ctx.currentTime,.8);next=ctx.currentTime+.1;step=0;timer=setInterval(sched,100);on=true},
+    mute(v){if(m)m.gain.setTargetAtTime(v?0:.6,ctx.currentTime,.05)},
+    pause(){if(on)ctx.suspend()},resume(){if(on)ctx.resume()}
+  }
+}
+const Synth=makeSynth(116);
+const bgm=$('bgm'),mus=$('mus');let musicOn=true,started=false;
+if(CONFIG.music)bgm.src=CONFIG.music;
+bgm.addEventListener('error',()=>{CONFIG.music=''});
+function startMusic(){
+  if(started)return;started=true;Synth.unlock();
+  const syn=()=>{if(CONFIG.synth){Synth.start();mus.hidden=false}else started=false};
+  if(!CONFIG.music)return syn();
+  bgm.volume=.7;bgm.play().then(()=>mus.hidden=false).catch(syn)}
+mus.addEventListener('click',()=>{musicOn=!musicOn;bgm.muted=!musicOn;Synth.mute(!musicOn);mus.textContent=musicOn?'🎵':'🔇'});
+document.addEventListener('visibilitychange',()=>{if(!started)return;
+  if(document.hidden){bgm.pause();Synth.pause()}else{if(CONFIG.music)bgm.play().catch(()=>{});Synth.resume()}});
+
+/* màn 1: chạm lì xì */
+let taps=0;
+$('env').addEventListener('click',()=>{
+  if(taps>=CONFIG.taps)return;
+  startMusic();taps++;
+  const e=$('env');e.classList.remove('shake');void e.getBBox;e.classList.add('shake');
+  $('bar').style.width=taps/CONFIG.taps*100+'%';
+  $('say').textContent=CONFIG.tapLines[Math.min(taps-1,CONFIG.tapLines.length-1)];
+  coins(3);
+  if(taps>=CONFIG.taps){coins(50);setTimeout(()=>{show('s2');setTimeout(()=>$('b2').style.opacity=1,CONFIG.fine.length*550+1200)},1100)}
+});
+
+/* màn 2: nút từ chối chạy trốn */
+let dodge=0;const no=$('no');
+function run(e){e.preventDefault();dodge++;
+  if(dodge>=CONFIG.noLines.length){no.style.display='none';toast('Hết quyền từ chối rồi nha 😎');return}
+  no.textContent=CONFIG.noLines[dodge];no.style.position='fixed';no.style.zIndex=5;
+  no.style.left=R(10,Math.max(11,innerWidth-no.offsetWidth-10))+'px';
+  no.style.top=R(10,Math.max(11,innerHeight-no.offsetHeight-10))+'px'}
+['mouseenter','touchstart','click'].forEach(v=>no.addEventListener(v,run,{passive:false}));
+$('yes').addEventListener('click',()=>{no.style.display='none';coins(70);show('s3');setTimeout(()=>coins(60),900)});
+
+/* màn 3: câu đùa */
+let j=0;
+$('more').addEventListener('click',()=>{
+  if(j<CONFIG.jokes.length){$('joke').textContent=CONFIG.jokes[j++];coins(6);if(j===CONFIG.jokes.length)$('more').textContent='Còn nữa… bấm lần cuối 💌'}
+  else{$('joke').textContent=CONFIG.final;$('more').style.display='none';coins(70)}
+});
+</script>
+</body>
+</html>
